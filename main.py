@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 import os
-import pdfplumber
+from pdfminer.high_level import extract_text
 
 app = FastAPI()
 
@@ -14,10 +14,8 @@ def get_doc_list():
 @app.get("/parse/{file_name}")
 def parse(file_name: str):
     try:
-        with pdfplumber.open(f"/assets/{file_name}.pdf") as pdf:
-            text = ""
-            for i in pdf.pages:
-                text += i.extract_text()
+        with open(f"/assets/{file_name}.pdf", "rb") as pdf:
+            text = extract_text(pdf)
             return {"text": text}
     except:
         raise HTTPException(status_code=404, detail="File not found")

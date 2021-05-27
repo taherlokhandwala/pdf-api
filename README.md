@@ -6,13 +6,13 @@ A simple API written in Python using the FastAPI module that parsers PDF files a
 
 1. Python 3.7
 2. FastAPI
-3. pdfplumber&nbsp;( This module parses the PDF and returns text contents )
+3. pdfminer&nbsp;( This module parses the PDF and returns text contents. Module name : pdfminer.six )
 4. Docker
 
 ## Steps to deploy server
 
-1. `docker build -t pdf_api .`
-2. `docker run -d --name pdf_container -v $PWD/assets:/assets -p 5000:5000 pdf_api`
+1. `docker build -t pdf_miner .`
+2. `docker run -d --name pdf_miner_container -v $PWD/assets:/assets -p 5000:5000 pdf_miner`
 3. The server gets deployed at `http://localhost:5000` locally
 
 ## Endpoints
